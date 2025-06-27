@@ -1,0 +1,39 @@
+<%- include('../../partials/admin_header') %>
+    <div class="container my-4">
+        <h2>Thêm sản phẩm mới</h2>
+        <form action="/admin/products/add" method="POST" class="row g-3" autocomplete="off">
+            <div class="col-md-6">
+                <label class="form-label">Tên sản phẩm</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Giá</label>
+                <input type="number" name="price" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Tên file ảnh</label>
+                <input type="text" name="image" class="form-control" placeholder="vd: ao1.webp" required>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Mô tả</label>
+                <textarea name="description" class="form-control"></textarea>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Danh mục</label>
+                <input type="text" name="category" class="form-control" placeholder="vd: new, Áo Thun..." required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Trạng thái</label>
+                <select name="status" class="form-select" required>
+                    <option value="active">active</option>
+                    <option value="new">new</option>
+                    <option value="hidden">hidden</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
+                <a href="/admin/products" class="btn btn-secondary ms-2">Quay lại</a>
+            </div>
+        </form>
+    </div>
+    <%- include('../../partials/admin_footer') %>

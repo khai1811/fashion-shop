@@ -1,0 +1,30 @@
+<%- include('../partials/admin_header') %>
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">Quản trị hệ thống</h2>
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-title">Tổng sản phẩm</div>
+                <div class="stat-value">
+                    <%= productCount %>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Tsổng đơn hàng</div>
+                <div class="stat-value">
+                    <%= orderCount %>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Doanh thu</div>
+                <div class="stat-value">
+                    <%= totalRevenue.toLocaleString() %> ₫
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-actions">
+            <a href="/admin/products" class="dashboard-btn">Quản lý sản phẩm</a>
+            <a href="/admin/orders" class="dashboard-btn">Quản lý đơn hàng</a>
+        </div>
+    </div>
+    <%- include('../partials/admin_footer') %>

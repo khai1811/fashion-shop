@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Địa chỉ của tôi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-3 mb-4">
+                    <div class="side-menu">
+                        <%- include('_sidebar', { active: 'addresses' }) %>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="account-card">
+                        <h3 class="mb-3">Địa chỉ của tôi</h3>
+                        <!-- Form thêm địa chỉ mới -->
+                        <form action="/account/addresses/add" method="POST" class="row g-2 mb-4">
+                            <div class="col-auto flex-grow-1">
+                                <input type="text" name="address" class="form-control" placeholder="Nhập địa chỉ mới"
+                                    required>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-success" type="submit">Thêm địa chỉ</button>
+                            </div>
+                        </form>
+                        <!-- Danh sách địa chỉ -->
+                        <ul class="list-group">
+                            <% if (addresses && addresses.length> 0) { %>
+                                <% addresses.forEach(a=> { %>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <%= a.address %>
+                                            <form action="/account/addresses/delete/<%= a._id %>" method="POST"
+                                                style="margin:0">
+                                                <button class="btn btn-danger btn-sm">Xoá</button>
+                                            </form>
+                                    </li>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <li class="list-group-item text-muted">Chưa có địa chỉ nào.</li>
+                                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/footer') %>
+</body>
+
+</html>

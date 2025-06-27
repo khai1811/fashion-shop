@@ -1,0 +1,21 @@
+<ul class="account-sidebar">
+    <li class="title">Tài khoản của tôi</li>
+    <li class="<%= active==='info'?'active':'' %>"><a href="/account/info">Thông tin của tôi</a></li>
+    <li class="<%= active==='addresses'?'active':'' %>"><a href="/account/addresses">Số địa chỉ</a></li>
+    <li class="<%= active==='measurements'?'active':'' %>"><a href="/account/measurements">Đo lường của tôi</a></li>
+    <li class="title">Tài sản của tôi</li>
+    <li class="<%= active==='vouchers'?'active':'' %>"><a href="/account/vouchers">Phiếu giảm giá</a></li>
+    <li class="<%= active==='points'?'active':'' %>"><a href="/account/points">Điểm thưởng</a></li>
+    <li class="title">Đơn hàng của tôi</li>
+    <li class="<%= active==='orders'?'active':'' %>"><a href="/account/orders">Tất cả các đơn hàng</a></li>
+    <li class="<%= active==='orders_processing'?'active':'' %>"><a href="/account/orders/pending">Đơn hàng xử lý</a>
+    </li>
+    <li class="<%= active==='orders_shipping'?'active':'' %>"><a href="/account/orders/shipping">Đơn hàng đang giao</a>
+    </li>
+    <li class="<%= active==='orders_delivered'?'active':'' %>"><a href="/account/orders/delivered">Đơn hàng đã giao</a>
+    </li>
+    <li class="<%= active==='orders_review'?'active':'' %>"><a href="/account/orders/review">Chưa đánh giá</a></li>
+    <li class="title">Khác</li>
+    <li class="<%= active==='recent'?'active':'' %>"><a href="/account/recent">Đã xem gần đây</a></li>
+    <li class="logout"><a href="/logout" style="color:inherit;text-decoration:none;">Đăng xuất</a></li>
+</ul>

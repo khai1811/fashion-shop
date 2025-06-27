@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm | Fashion Store</title>
+    <link rel="stylesheet" href="/css/products.css">
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+
+        <div class="container-products">
+            <h2 class="products-title">Danh sách sản phẩm</h2>
+            <% if (products && products.length> 0) { %>
+                <div class="products-grid">
+                    <% products.forEach(p=> { %>
+                        <div class="product-card">
+                            <img class="product-image" src="/images/<%= p.image ? p.image : 'no-image.png' %>"
+                                alt="<%= p.name %>" onerror="this.onerror=null;this.src='/images/no-image.png';">
+                            <div class="product-name">
+                                <%= p.name %>
+                            </div>
+                            <div class="product-price">
+                                <%= p.price ? p.price.toLocaleString('vi-VN') : 0 %>₫
+                            </div>
+                            <div class="product-actions">
+                                <a href="/products/<%= p._id %>" class="btn-detail">Chi tiết</a>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <% } else { %>
+                    <div class="alert alert-warning text-center mt-5">Chưa có sản phẩm nào!</div>
+                    <% } %>
+        </div>
+
+        <%- include('../partials/footer') %>
+</body>
+
+</html>

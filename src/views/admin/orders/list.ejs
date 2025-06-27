@@ -1,0 +1,14 @@
+<%- include('../../partials/admin_header') %>
+    <div class="container my-4">
+        <h2>Danh sách đơn hàng</h2>
+        <ul>
+            <% orders.forEach(order=> { %>
+                <li>
+                    Mã đơn: <%= order._id %> - Khách: <%= order.user_id?.username || 'Ẩn' %> - Tổng tiền: <%=
+                                order.total || '...' %>
+                                [<a href="/admin/orders/<%= order._id %>">Xem chi tiết</a>]
+                </li>
+                <% }) %>
+        </ul>
+    </div>
+    <%- include('../../partials/admin_footer') %>

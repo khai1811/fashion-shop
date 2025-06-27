@@ -1,0 +1,41 @@
+<%- include('../../partials/admin_header') %>
+
+    <div class="container my-4">
+        <h2>Chỉnh sửa sản phẩm</h2>
+        <form action="/admin/products/edit/<%= product._id %>" method="POST" class="row g-3" autocomplete="off">
+            <div class="col-md-6">
+                <label class="form-label">Tên sản phẩm</label>
+                <input type="text" name="name" value="<%= product.name %>" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Giá</label>
+                <input type="number" name="price" value="<%= product.price %>" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Tên file ảnh</label>
+                <input type="text" name="image" value="<%= product.image %>" class="form-control" required>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Mô tả</label>
+                <textarea name="description" class="form-control"><%= product.description %></textarea>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Danh mục</label>
+                <input type="text" name="category" value="<%= product.category %>" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Trạng thái</label>
+                <select name="status" class="form-select" required>
+                    <option value="active" <%=product.status==='active' ?'selected':'' %>>active</option>
+                    <option value="new" <%=product.status==='new' ?'selected':'' %>>new</option>
+                    <option value="hidden" <%=product.status==='hidden' ?'selected':'' %>>hidden</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                <a href="/admin/products" class="btn btn-secondary ms-2">Quay lại</a>
+            </div>
+        </form>
+    </div>
+
+    <%- include('../../partials/admin_footer') %>

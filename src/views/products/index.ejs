@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+    <h2>Danh sách sản phẩm</h2>
+    <a href="/products/add">+ Thêm sản phẩm</a>
+
+    <ul>
+        <% products.forEach(product=> { %>
+            <li>
+                <a href="/products/<%= product._id %>">
+                    <%= product.name %> - <%= product.price %>₫
+                </a> |
+                <a href="/admin/products/edit/<%= product._id %>">✏️ Sửa</a> |
+                <a href="/products/delete/<%= product._id %>" onclick="return confirm('Xóa?')">🗑️ Xóa</a>
+            </li>
+            <% }) %>
+    </ul>
+
+    <%- include('../partials/footer') %>

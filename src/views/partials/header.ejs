@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/layout.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/duyplus/vue-address/dist/db.min.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+        <div class="container">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <img src="/images/logo.png" alt="Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="/">Trang chủ</a></li>
+                    <!-- MEGA MENU -->
+                    <li class="nav-item dropdown-mega position-static">
+                        <a class="nav-link fw-bold dropdown-toggle" href="/products" id="megaDropdown" role="button">
+                            Sản phẩm
+                        </a>
+                        <div class="dropdown-menu mega-menu border-0 rounded-0 shadow" aria-labelledby="megaDropdown">
+                            <div class="container">
+                                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 py-4">
+                                    <!-- Cột 1: ÁO -->
+                                    <div class="col">
+                                        <h6 class="cat-title">ÁO</h6>
+                                        <ul class="cat-list">
+                                            <li><a href="#">Áo Thun</a></li>
+                                            <li><a href="#">Áo Polo</a></li>
+                                            <li><a href="#">Áo Sơmi</a></li>
+                                            <li><a href="#">Áo Khoác</a></li>
+                                            <li><a href="#">Áo Ni Và Len</a></li>
+                                            <li><a href="#">Hoodie</a></li>
+                                            <li><a href="#">Tank Top - Áo Ba Lỗ</a></li>
+                                            <li><a href="#">Set Đồ</a></li>
+                                            <li class="cat-feature"><a href="#"><b>BEST SELLER</b></a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- Cột 2: QUẦN -->
+                                    <div class="col">
+                                        <h6 class="cat-title">QUẦN</h6>
+                                        <ul class="cat-list">
+                                            <li><a href="#">Quần Jean</a></li>
+                                            <li><a href="#">Quần Short</a></li>
+                                            <li><a href="#">Quần Kaki & Chino</a></li>
+                                            <li><a href="#">Quần Jogger - Quần Dài</a></li>
+                                            <li><a href="#">Quần Tây</a></li>
+                                            <li><a href="#">Quần Boxer</a></li>
+                                            <li><a href="#">Set Đồ</a></li>
+                                            <li class="cat-feature"><a href="#"><b>OUTLET - ƯU ĐÃI 30% - 70%</b></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Cột 3: GIÀY & PHỤ KIỆN -->
+                                    <div class="col">
+                                        <h6 class="cat-title">GIÀY & PHỤ KIỆN</h6>
+                                        <ul class="cat-list">
+                                            <li><a href="#">Giày & Dép</a></li>
+                                            <li><a href="#">Balo, Túi & Ví</a></li>
+                                            <li><a href="#">Nón</a></li>
+                                            <li><a href="#">Thắt Lưng</a></li>
+                                            <li><a href="#">Vớ</a></li>
+                                            <li><a href="#">Mắt Kính</a></li>
+                                            <li class="cat-feature"><a href="#"><b>SMART JEANS</b></a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- Thêm cột nếu muốn -->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="/men">Nam</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="/women">Nữ</a></li>
+                </ul>
+                <!-- Icon phải -->
+                <div class="navbar-icons d-flex align-items-center ms-3 gap-3">
+                    <% if (user) { %>
+                        <div class="dropdown">
+                            <a class="icon-btn text-dark dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false" title="Tài khoản">
+                                <i class="fa-regular fa-user fa-lg"></i>
+                                <%= user.username %>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="/account/dashboard"><i
+                                            class="fa fa-user me-2"></i>Trang cá nhân</a></li>
+                                <li><a class="dropdown-item" href="/logout"><i class="fa fa-sign-out-alt me-2"></i>Đăng
+                                        xuất</a></li>
+                            </ul>
+                        </div>
+                        <% } else { %>
+                            <a href="/login" class="icon-btn text-dark" title="Đăng nhập"><i
+                                    class="fa-regular fa-user fa-lg"></i></a>
+                            <a href="/register" class="icon-btn text-dark" title="Đăng ký"><i
+                                    class="fa-regular fa-address-card fa-lg"></i></a>
+                            <% } %>
+                                <a href="/cart" class="icon-btn position-relative text-dark" title="Giỏ hàng">
+                                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                                    <span
+                                        class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        <%= cart && cart.items ? cart.items.reduce((sum, item)=> sum + item.quantity, 0)
+                                            : 0 %>
+                                    </span>
+                                </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</body>
+
+</html>

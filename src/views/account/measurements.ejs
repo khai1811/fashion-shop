@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đo lường của tôi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+        <div class="container-fluid account-container">
+            <div class="row">
+                <div class="col-lg-3 mb-4">
+                    <div class="side-menu">
+                        <%- include('_sidebar', { active: 'measurements' }) %>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="account-card">
+                        <h3 class="mb-3">Đo lường của tôi</h3>
+                        <p>Quản lý thông tin số đo, kích thước sản phẩm cá nhân...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/footer') %>
+</body>
+
+</html>

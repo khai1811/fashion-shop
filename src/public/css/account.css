@@ -1,0 +1,212 @@
+body {
+    background: #fafbfc;
+}
+
+.side-menu {
+    width: 240px;
+    background: #fff;
+    min-height: 100vh;
+    border-radius: 8px;
+    padding: 18px 0 16px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.side-menu-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-left: 18px;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.side-menu li {
+    padding: 7px 0 7px 18px;
+    color: #222;
+    cursor: pointer;
+}
+
+.side-menu li.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+    margin-top: 18px;
+    margin-bottom: 3px;
+    padding-left: 10px;
+}
+
+.side-menu li.active,
+.side-menu li.title {
+    background: #fafbfc;
+    border-left: 3px solid #e53e3e;
+}
+
+.dashboard-content {
+    padding: 20px 0 0 40px;
+}
+
+.dashboard-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px #0001;
+    padding: 22px 26px;
+    margin-bottom: 20px;
+}
+
+.info-box-title {
+    font-size: 16px;
+    color: #888;
+}
+
+.info-box-main {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.member-crown {
+    color: #e0ac1c;
+    font-size: 20px;
+    margin-left: 4px;
+}
+
+.order-status {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 7px;
+}
+
+.order-status-item {
+    text-align: center;
+    flex: 1;
+}
+
+.order-status-item:not(:last-child) {
+    border-right: 1px solid #eee;
+}
+
+.order-status-badge {
+    background: #e53e3e;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0 8px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.order-status-icon {
+    font-size: 23px;
+    color: #777;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.breadcrumb {
+    background: #eef2f6;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 6px 18px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.logout {
+    font-weight: bold;
+    color: #d32f2f !important;
+    cursor: pointer;
+}
+
+.dashboard-hello {
+    font-size: 20px;
+}
+
+.dashboard-section-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.account-link {
+    font-size: 15px;
+    color: #4e7bd3;
+    text-decoration: none;
+}
+
+.account-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+    .dashboard-content {
+        padding-left: 0;
+    }
+
+    .side-menu {
+        margin-bottom: 28px;
+    }
+}
+
+
+.account-container {
+    background: #f8f9fa;
+    min-height: 600px;
+    padding-bottom: 40px;
+}
+
+.account-sidebar {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px #eee;
+    padding: 20px 0 10px 0;
+    list-style: none;
+    margin: 0;
+}
+
+.account-sidebar .title {
+    font-weight: bold;
+    color: #333;
+    margin: 12px 0 5px 25px;
+}
+
+.account-sidebar li {
+    margin: 0 0 2px 0;
+    padding: 0;
+}
+
+.account-sidebar li.active,
+.account-sidebar li.active a {
+    background: #003cff0d;
+    color: #003cff;
+    font-weight: bold;
+    border-left: 3px solid #003cff;
+}
+
+.account-sidebar li a {
+    display: block;
+    padding: 8px 20px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px 0 0 5px;
+    transition: background .15s;
+}
+
+.account-sidebar li a:hover {
+    background: #e8f0ff;
+    color: #003cff;
+}
+
+.account-sidebar .logout {
+    margin-top: 16px;
+}
+
+.account-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px #eee;
+    padding: 24px;
+    margin-bottom: 18px;
+}

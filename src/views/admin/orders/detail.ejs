@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+<body>
+    <%- include('../../partials/admin_header') %>
+
+        <div class="container my-4">
+            <h2>Chi tiết đơn hàng</h2>
+            <p><strong>Mã đơn:</strong>
+                <%= order._id %>
+            </p>
+            <p><strong>Khách hàng:</strong>
+                <%= order.user_id ? order.user_id.username : 'N/A' %>
+            </p>
+            <p><strong>Ngày tạo:</strong>
+                <%= order.createdAt.toLocaleString() %>
+            </p>
+
+            <h4>Sản phẩm</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tên SP</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% order.items.forEach(item=> { %>
+                        <tr>
+                            <td>
+                                <%= item.product_id ? item.product_id.name : 'N/A' %>
+                            </td>
+                            <td>
+                                <%= item.quantity %>
+                            </td>
+                            <td>
+                                <%= item.price.toLocaleString('vi-VN') %>₫
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+
+            <h4>Trạng thái đơn hàng</h4>
+            <form action="/admin/orders/<%= order._id %>/update" method="POST" class="mb-3">
+                <select name="status" class="form-select" required>
+                    <option value="pending" <%=order.status==='pending' ? 'selected' : '' %>>Chờ duyệt</option>
+                    <option value="approved" <%=order.status==='approved' ? 'selected' : '' %>>Đã duyệt</option>
+                    <option value="shipping" <%=order.status==='shipping' ? 'selected' : '' %>>Đang giao</option>
+                    <option value="delivered" <%=order.status==='delivered' ? 'selected' : '' %>>Đã giao</option>
+                    <option value="cancelled" <%=order.status==='cancelled' ? 'selected' : '' %>>Đã hủy</option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-2">Cập nhật trạng thái</button>
+                <a href="/admin/orders" class="btn btn-secondary mt-2">Quay lại</a>
+            </form>
+        </div>
+
+        <%- include('../../partials/admin_footer') %>
+</body>
+
+</html>

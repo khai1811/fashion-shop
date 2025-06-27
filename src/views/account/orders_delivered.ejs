@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+    <div class="container-fluid account-container">
+        <div class="row">
+            <div class="col-lg-3 mb-4">
+                <div class="side-menu">
+                    <%- include('account/_sidebar', { active: 'orders_delivered' }) %>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="account-card">
+                    <h3 class="mb-3">Đơn hàng đã giao</h3>
+                    <p>Đơn hàng đã giao...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer') %>

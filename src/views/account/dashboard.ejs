@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trung tâm cá nhân</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+        <div class="container-fluid">
+            <div class="breadcrumb">Trang chủ / Thông tin của tôi</div>
+            <div class="row">
+                <!-- Menu trái -->
+                <div class="col-lg-3 mb-4">
+                    <div class="side-menu">
+                        <div class="side-menu-title">Trung tâm cá nhân</div>
+                        <ul>
+                            <li class="title">Tài khoản của tôi</li>
+                            <li>Thông tin của tôi</li>
+                            <li>Số địa chỉ</li>
+                            <li>Đo lường của tôi</li>
+                            <li class="title">Tài sản của tôi</li>
+                            <li>Phiếu giảm giá của tôi</li>
+                            <li>Điểm thưởng của tôi</li>
+                            <li class="title">Đơn hàng của tôi</li>
+                            <li>Tất cả các đơn hàng</li>
+                            <li>Đơn hàng xử lý</li>
+                            <li>Đơn hàng chờ lấy hàng</li>
+                            <li>Đơn hàng đang giao</li>
+                            <li>Đơn hàng đã giao</li>
+                            <li>Chưa đánh giá</li>
+                            <li>Đã đánh giá</li>
+                            <li>Đơn hàng đã huỷ</li>
+                            <li>Đơn hàng trả lại</li>
+                            <li class="title">Nỗi lo của tôi</li>
+                            <li>Đã xem gần đây</li>
+                            <li class="logout">
+                                <a href="/logout" style="color:inherit;text-decoration:none;">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Nội dung phải -->
+                <div class="col-lg-6 dashboard-content">
+                    <!-- Card Chào + Member -->
+                    <div class="dashboard-card mb-3 d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="dashboard-hello">Chào, <span class="fw-bold">
+                                    <%= user ? user.username : 'Khách' %>
+                                </span></div>
+                            <div class="info-box-title mt-1">Phiếu giảm giá</div>
+                            <div class="info-box-main">0</div>
+                        </div>
+                        <div class="text-center flex-fill">
+                            <div class="info-box-title">Điểm</div>
+                            <div class="info-box-main">0</div>
+                        </div>
+                        <div class="text-end">
+                            <div class="info-box-title">Member</div>
+                            <div class="member-crown"><i class="fa-solid fa-crown"></i></div>
+                        </div>
+                        <div class="flex-fill text-end">
+                            <a href="/account/info" class="account-link">Thông tin của tôi &gt;</a>
+                        </div>
+                    </div>
+                    <!-- Card Đơn hàng của tôi -->
+                    <div class="dashboard-card">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="dashboard-section-title">Đơn hàng của tôi</div>
+                            <a href="/account/orders" class="account-link">Xem tất cả &gt;</a>
+                        </div>
+                        <div class="order-status">
+                            <div class="order-status-item">
+                                <div class="order-status-icon"><i class="fa-regular fa-clipboard"></i></div>
+                                <span class="order-status-badge">
+                                    <%= orders.filter(o=> o.status === 'pending').length %>
+                                </span>
+                                <div>Chờ xác nhận</div>
+                            </div>
+                            <div class="order-status-item">
+                                <div class="order-status-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                                <span class="order-status-badge">
+                                    <%= orders.filter(o=> o.status === 'shipping').length %>
+                                </span>
+                                <div>Đang giao</div>
+                            </div>
+                            <div class="order-status-item">
+                                <div class="order-status-icon"><i class="fa-solid fa-check-double"></i></div>
+                                <span class="order-status-badge">
+                                    <%= orders.filter(o=> o.status === 'delivered').length %>
+                                </span>
+                                <div>Đã giao</div>
+                            </div>
+                            <div class="order-status-item">
+                                <div class="order-status-icon"><i class="fa-regular fa-pen-to-square"></i></div>
+                                <span class="order-status-badge">
+                                    <%= orders.filter(o=> o.status === 'review').length %>
+                                </span>
+                                <div>Chờ đánh giá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card mt-3">
+                        <div class="mb-2 fw-bold">Lịch sử đặt hàng gần đây</div>
+                        <% function statusVi(status) { switch (status) { case 'pending' : return 'Chờ xác nhận' ;
+                            case 'shipping' : return 'Đang giao' ; case 'delivered' : return 'Đã giao' ; case 'review' :
+                            return 'Chờ đánh giá' ; default: return status; } } %>
+                            <% if (orders.length===0) { %>
+                                <div>Bạn chưa có đơn hàng nào.</div>
+                                <% } else { %>
+                                    <ul>
+                                        <% orders.slice(0, 5).forEach(order=> { %>
+                                            <li>
+                                                Mã: <%= order._id %>
+                                                    - Ngày: <%= order.created_at ? new
+                                                        Date(order.created_at).toLocaleDateString('vi-VN') : '---' %>
+                                                        - Trạng thái: <%= statusVi(order.status) %>
+                                            </li>
+                                            <% }) %>
+                                    </ul>
+                                    <% } %>
+                    </div>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+        </div>
+        <%- include('../partials/footer') %>
+</body>
+
+</html>

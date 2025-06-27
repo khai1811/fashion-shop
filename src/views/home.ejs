@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASHION STORE - Thời Trang Nam</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <!-- Banner -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h1 class="display-4 fw-bold mb-4">Thời trang cao cấp</h1>
+                        <p class="lead mb-4">Khám phá bộ sưu tập mới nhất của chúng tôi với những thiết kế độc đáo và
+                            chất lượng cao cấp.</p>
+                        <a href="/products" class="btn btn-dark btn-lg">Mua sắm ngay</a>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="/images/hero.jpg" alt="Hero Image" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container mb-5">
+            <ul class="nav nav-tabs mb-4">
+                <li class="nav-item"><a class="nav-link active" href="#">Hàng mới</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Bán chạy</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Đồ hè</a></li>
+            </ul>
+
+            <!-- Section: Hàng mới -->
+            <div class="row row-cols-2 row-cols-md-5 g-3 align-items-stretch mb-4">
+                <!-- Banner -->
+                <div class="col">
+                    <div class="banner-category position-relative rounded-4 overflow-hidden h-100">
+                        <img src="/images/áo mới.webp" alt="Hàng mới" class="w-100 h-100 object-fit-cover banner-bg">
+                        <div
+                            class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center banner-content">
+                            <h3 class="text-white fw-bold mb-3">HÀNG MỚI</h3>
+                            <a href="#" class="btn btn-light btn-lg fw-bold px-4 banner-btn">XEM NGAY</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sản phẩm -->
+                <% featuredProducts.forEach(product=> { %>
+                    <div class="col">
+                        <div class="card product-card h-100 position-relative border-0 shadow-sm">
+                            <% if (product.isNew) { %>
+                                <span
+                                    class="badge bg-primary position-absolute top-0 start-0 m-2 px-2 py-1 fs-6 shadow">NEW</span>
+                                <% } %>
+                                    <div class="card-img-container position-relative overflow-hidden">
+                                        <img src="/images/<%= product.image %>" class="card-img-top"
+                                            alt="<%= product.name %>">
+                                        <!-- Nút action hiện khi hover -->
+                                        <div class="product-actions">
+                                            <button class="btn btn-light btn-circle me-2" title="Xem nhanh"
+                                                onclick="openQuickView('<%= product._id %>')">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                            <!-- <form method="POST" action="/cart/add/<%= product._id %>" class="d-inline">
+                                                <button type="submit" class="btn btn-primary btn-circle"
+                                                    title="Thêm vào giỏ hàng">
+                                                    <i class="fa-solid fa-cart-plus"></i>
+                                                </button>
+                                            </form> -->
+                                            <button class="btn btn-primary btn-circle btn-add-to-cart"
+                                                data-id="<%= product._id %>" title="Thêm vào giỏ hàng">
+                                                <i class="fa-solid fa-cart-plus"></i>
+                                            </button>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body px-2 py-2">
+                                        <h6 class="card-title text-truncate mb-2">
+                                            <%= product.name %>
+                                        </h6>
+                                        <div class="mb-2 text-center">
+                                            <span class="fw-bold text-dark">
+                                                <%= product.price.toLocaleString('vi-VN') %>₫
+                                            </span>
+                                            <% if (product.oldPrice) { %>
+                                                <span class="text-muted text-decoration-line-through ms-1">
+                                                    <%= product.oldPrice.toLocaleString('vi-VN') %>₫
+                                                </span>
+                                                <% } %>
+                                        </div>
+                                        <% if (product.colors && product.colors.length> 0) { %>
+                                            <div class="mb-2">
+                                                <% product.colors.forEach(c=> { %>
+                                                    <span class="d-inline-block rounded-circle border me-1"
+                                                        style="width:20px; height:20px;"></span>
+                                                    <% }) %>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+            <div class="text-center mt-3">
+                <a href="#" class="btn btn-outline-dark btn-sm fw-bold px-4">Xem tất cả <i
+                        class="fas fa-chevron-right"></i></a>
+            </div>
+
+            <!-- Section: Áo thun -->
+            <div class="row row-cols-2 row-cols-md-5 g-3 align-items-stretch">
+                <!-- Banner -->
+                <div class="col">
+                    <div class="banner-category position-relative rounded-4 overflow-hidden h-100">
+                        <img src="/images/ao-thun-in-hinh-sai-gon.jpg" alt="Áo thun"
+                            class="w-100 h-100 object-fit-cover banner-bg">
+                        <div
+                            class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center banner-content">
+                            <h3 class="text-white fw-bold mb-3">ÁO THUN</h3>
+                            <a href="#" class="btn btn-light btn-lg fw-bold px-4 banner-btn">XEM NGAY </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sản phẩm -->
+                <% featuredShirts.forEach(product=> { %>
+                    <div class="col">
+                        <div class="card product-card h-100 position-relative border-0 shadow-sm">
+                            <% if (product.isNew) { %>
+                                <span
+                                    class="badge bg-primary position-absolute top-0 start-0 m-2 px-2 py-1 fs-6 shadow">NEW</span>
+                                <% } %>
+                                    <div class="card-img-container position-relative overflow-hidden">
+                                        <img src="/images/<%= product.image %>" class="card-img-top"
+                                            alt="<%= product.name %>">
+                                        <div class="product-actions">
+                                            <button class="btn btn-light btn-circle me-2" title="Xem nhanh"
+                                                onclick="openQuickView('<%= product._id %>')">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+
+
+                                            <button class="btn btn-primary btn-circle btn-add-to-cart"
+                                                data-id="<%= product._id %>" title="Thêm vào giỏ hàng">
+                                                <i class="fa-solid fa-cart-plus"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body px-2 py-2">
+                                        <h6 class="card-title text-truncate mb-2">
+                                            <%= product.name %>
+                                        </h6>
+                                        <div class="mb-2 text-center">
+                                            <span class="fw-bold text-dark">
+                                                <%= product.price.toLocaleString('vi-VN') %>₫
+                                            </span>
+                                            <% if (product.oldPrice) { %>
+                                                <span class="text-muted text-decoration-line-through ms-1">
+                                                    <%= product.oldPrice.toLocaleString('vi-VN') %>₫
+                                                </span>
+                                                <% } %>
+                                        </div>
+                                        <% if (product.colors && product.colors.length> 0) { %>
+                                            <div class="mb-2">
+                                                <% product.colors.forEach(c=> { %>
+                                                    <span class="d-inline-block rounded-circle border me-1"
+                                                        style="width:20px; height:20px;"></span>
+                                                    <% }) %>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+            <div class="text-center mt-3">
+                <a href="#" class="btn btn-outline-dark btn-sm fw-bold px-4">Xem tất cả <i
+                        class="fas fa-chevron-right"></i> </a>
+            </div>
+        </div>
+        <div class="modal fade" id="quickViewModal" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content quickview-content">
+                    <div class="modal-header border-0 pb-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body py-3 px-4">
+                        <div class="row align-items-center">
+                            <!-- Ảnh sản phẩm (nửa trái) -->
+                            <div class="col-md-6 text-center">
+                                <img id="quickViewImage" class="img-fluid rounded border shadow-sm"
+                                    style="max-height:370px;">
+                            </div>
+                            <!-- Thông tin (nửa phải) -->
+                            <div class="col-md-6">
+                                <h4 id="quickViewTitle" class="fw-bold mb-3"></h4>
+                                <div id="quickViewPrice" class="fs-3 fw-bold mb-2 text-danger"></div>
+                                <div id="quickViewOldPrice" class="fs-6 text-muted text-decoration-line-through mb-2">
+                                </div>
+                                <div id="quickViewDesc" class="mb-3"></div>
+                                <!-- Thêm nút/thông tin như mẫu -->
+                                <div class="mb-3">
+                                    <label for="quickViewQty" class="form-label mb-1">Số lượng:</label>
+                                    <input id="quickViewQty" type="number" class="form-control d-inline-block" value="1"
+                                        min="1" style="width:80px;">
+                                </div>
+                                <button class="btn btn-dark btn-lg w-100 mb-2" id="quickViewAddToCart">
+                                    <i class="fa-solid fa-cart-plus me-2"></i>Thêm vào giỏ hàng
+                                </button>
+                                <div>
+                                    <button class="btn btn-outline-primary me-2" id="quickViewGoCart"><i
+                                            class="fa fa-shopping-cart me-1"></i> Xem giỏ hàng</button>
+                                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Về trang
+                                        chủ</button>
+                                </div>
+                                <hr>
+                                <div class="small text-muted">Chính sách: Miễn phí đổi trả 15 ngày | Giao hàng toàn quốc
+                                    | Chất lượng đảm bảo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="/js/main.js"></script>
+        <%- include('partials/footer') %>
+</body>
+
+</html>

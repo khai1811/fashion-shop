@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+<body>
+    <%- include('../../partials/admin_header') %>
+
+        <div class="container my-4">
+            <h2>Danh sách đơn hàng</h2>
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Mã đơn</th>
+                        <th>Khách hàng</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% orders.forEach((order, idx)=> { %>
+                        <tr>
+                            <td>
+                                <%= idx + 1 %>
+                            </td>
+                            <td>
+                                <%= order._id %>
+                            </td>
+                            <td>
+                                <%= order.user_id ? order.user_id.username : 'N/A' %>
+                            </td>
+                            <td><span
+                                    class="badge bg-<%= order.status === 'pending' ? 'warning' : (order.status === 'approved' ? 'primary' : (order.status === 'delivered' ? 'success' : 'secondary')) %>">
+                                    <%= order.status %>
+                                </span></td>
+                            <td>
+                                <%= order.createdAt.toLocaleDateString() %>
+                            </td>
+                            <td>
+                                <a href="/admin/orders/<%= order._id %>" class="btn btn-info btn-sm">Xem</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <%- include('../../partials/admin_footer') %>
+</body>
+
+</html>

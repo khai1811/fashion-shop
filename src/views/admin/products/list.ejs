@@ -1,0 +1,57 @@
+<%- include('../../partials/admin_header') %>
+    <div class="container my-4">
+        <h2 class="mb-4">Quản lý sản phẩm</h2>
+        <a href="/admin/products/add" class="btn btn-primary mb-3">+ Thêm sản phẩm mới</a>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Ảnh</th>
+                        <th>Mô tả</th>
+                        <th>Danh mục</th>
+                        <th>Trạng thái</th>
+                        <th style="width:140px;">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach((p, idx)=> { %>
+                        <tr>
+                            <td>
+                                <%= idx+1 %>
+                            </td>
+                            <td>
+                                <%= p.name %>
+                            </td>
+                            <td>
+                                <%= p.price.toLocaleString('vi-VN') %>₫
+                            </td>
+                            <td>
+                                <img src="/images/<%= p.image %>" alt="<%= p.name %>" width="60" class="img-thumbnail">
+                            </td>
+                            <td style="max-width:180px">
+                                <%= p.description %>
+                            </td>
+                            <td>
+                                <%= p.category %>
+                            </td>
+                            <td>
+                                <span class="badge bg-<%= p.status==='active'?'success':'secondary' %>">
+                                    <%= p.status %>
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/admin/products/edit/<%= p._id %>" class="btn btn-warning btn-sm me-1">Sửa</a>
+                                <a href="/admin/products/delete/<%= p._id %>" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%- include('../../partials/admin_footer') %>

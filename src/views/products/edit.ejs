@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+    <h2>Sửa sản phẩm</h2>
+
+    <form method="POST" action="/admin/products/edit/<%= product._id %>" enctype="multipart/form-data">
+        <input type="text" name="name" value="<%= product.name %>" required><br>
+        <input type="number" name="price" value="<%= product.price %>" required><br>
+        <textarea name="description"><%= product.description %></textarea><br>
+
+        <p>Ảnh hiện tại:</p>
+        <img src="<%= product.image %>" width="100"><br>
+
+        <label>Chọn ảnh mới (nếu muốn thay):</label><br>
+        <input type="file" name="image"><br>
+
+        <button type="submit">Cập nhật</button>
+    </form>
+    <%- include('../partials/footer') %>
