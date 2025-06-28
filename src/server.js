@@ -20,17 +20,6 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 } // 1h
 }));
 
-// app.use((req, res, next) => {
-//     if (!req.session.user) {
-//         req.session.user = {
-//             _id: "64abc123456789abcdef0123",
-//             username: "admin",
-//             role: "admin"
-//         };
-//     }
-//     next();
-// });
-
 
 // server.js hoặc app.js
 app.use((req, res, next) => {
@@ -49,9 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
-
-app.use('/', productRoutes);
+// app.use('/', productRoutes);
 app.use('/', webRoutes);
 // Start
 app.listen(PORT, () => console.log(`🚀 Server chạy tại http://localhost:${PORT}`));

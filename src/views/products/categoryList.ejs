@@ -1,0 +1,130 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<%- include('../partials/header') %>
+
+    <section class="category-hero-section">
+        <div class="category-hero-content">
+            <h1 class="cat-main-title">
+                <%= categoryTitle %>
+            </h1>
+            <p class="cat-desc">
+                <%= categoryDesc %>
+            </p>
+        </div>
+        <img src="/images/<%= categoryBanner %>" alt="Banner" class="cat-hero-img">
+    </section>
+
+    <div class="category-container">
+        <div class="cat-summary-row">
+            <div class="cat-summary-left">
+                <span class="cat-summary-total">
+                    <%= products.length %> sản phẩm
+                </span>
+            </div>
+            <div class="cat-summary-right">
+                <input type="text" class="cat-search" placeholder="Tìm kiếm sản phẩm...">
+            </div>
+        </div>
+
+        <% if (products.length===0) { %>
+            <div class="cat-empty">Chưa có sản phẩm nào!</div>
+            <% } else { %>
+                <div class="cat-product-grid">
+                    <% products.forEach(product=> { %>
+                        <div class="cat-product-card position-relative">
+                            <% if (product.isNew) { %>
+                                <div class="cat-badge cat-badge--new">NEW</div>
+                                <% } %>
+                                    <% if (product.isSale && product.oldPrice) { %>
+                                        <div class="cat-badge cat-badge--sale">
+                                            -<%= Math.round(100 - (product.price * 100 / product.oldPrice)) %>%
+                                        </div>
+                                        <% } %>
+                                            <div class="cat-img-box position-relative overflow-hidden">
+                                                <img src="/images/<%= product.image %>" alt="<%= product.name %>"
+                                                    class="cat-product-img">
+                                                <div class="cat-product-actions">
+                                                    <button class="btn btn-light btn-circle me-2" title="Xem nhanh"
+                                                        onclick="openQuickView('<%= product._id %>')">
+                                                        <i class="fa-regular fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-primary btn-circle btn-add-to-cart"
+                                                        data-id="<%= product._id %>" title="Thêm vào giỏ hàng">
+                                                        <i class="fa-solid fa-cart-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="cat-card-body px-2 py-2">
+                                                <h3 class="cat-product-title text-truncate mb-1"
+                                                    title="<%= product.name %>">
+                                                    <%= product.name %>
+                                                </h3>
+                                                <div class="cat-price-row text-center mb-2">
+                                                    <span class="cat-product-price fw-bold">
+                                                        <%= product.price.toLocaleString('vi-VN') %>₫
+                                                    </span>
+                                                    <% if (product.oldPrice) { %>
+                                                        <span
+                                                            class="cat-product-oldprice ms-1 text-decoration-line-through">
+                                                            <%= product.oldPrice.toLocaleString('vi-VN') %>₫
+                                                        </span>
+                                                        <% } %>
+                                                </div>
+                                                <% if (product.colors && product.colors.length> 0) { %>
+                                                    <div class="cat-color-list mb-2 text-center">
+                                                        <% product.colors.forEach(c=> { %>
+                                                            <span class="cat-color-dot">"></span>
+                                                            <% }) %>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <% } %>
+    </div>
+
+    <!-- Quick View Modal (copy y chang như file home nếu có) -->
+    <div class="modal fade" id="quickViewModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content quickview-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body py-3 px-4">
+                    <div class="row align-items-center">
+                        <!-- Ảnh sản phẩm -->
+                        <div class="col-md-6 text-center">
+                            <img id="quickViewImage" class="img-fluid rounded border shadow-sm"
+                                style="max-height:370px;">
+                        </div>
+                        <!-- Thông tin sản phẩm -->
+                        <div class="col-md-6">
+                            <h4 id="quickViewTitle" class="fw-bold mb-3"></h4>
+                            <div id="quickViewPrice" class="fs-3 fw-bold mb-2 text-danger"></div>
+                            <div id="quickViewOldPrice" class="fs-6 text-muted text-decoration-line-through mb-2"></div>
+                            <div id="quickViewDesc" class="mb-3"></div>
+                            <div class="mb-3">
+                                <label for="quickViewQty" class="form-label mb-1">Số lượng:</label>
+                                <input id="quickViewQty" type="number" class="form-control d-inline-block" value="1"
+                                    min="1" style="width:80px;">
+                            </div>
+                            <button class="btn btn-dark btn-lg w-100 mb-2" id="quickViewAddToCart">
+                                <i class="fa-solid fa-cart-plus me-2"></i>Thêm vào giỏ hàng
+                            </button>
+                            <div>
+                                <button class="btn btn-outline-primary me-2" id="quickViewGoCart"><i
+                                        class="fa fa-shopping-cart me-1"></i> Xem giỏ hàng</button>
+                                <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Về trang chủ</button>
+                            </div>
+                            <hr>
+                            <div class="small text-muted">Chính sách: Miễn phí đổi trả 15 ngày | Giao hàng toàn quốc |
+                                Chất lượng đảm bảo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <%- include('../partials/footer') %>

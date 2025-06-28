@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/category.css">
 
 
     <script src="https://cdn.jsdelivr.net/gh/duyplus/vue-address/dist/db.min.js"></script>
@@ -37,14 +39,14 @@
                                     <div class="col">
                                         <h6 class="cat-title">ÁO</h6>
                                         <ul class="cat-list">
-                                            <li><a href="#">Áo Thun</a></li>
-                                            <li><a href="#">Áo Polo</a></li>
-                                            <li><a href="#">Áo Sơmi</a></li>
-                                            <li><a href="#">Áo Khoác</a></li>
-                                            <li><a href="#">Áo Ni Và Len</a></li>
-                                            <li><a href="#">Hoodie</a></li>
-                                            <li><a href="#">Tank Top - Áo Ba Lỗ</a></li>
-                                            <li><a href="#">Set Đồ</a></li>
+                                            <li><a href="/collections/ao-thun">Áo Thun</a></li>
+                                            <li><a href="/collections/ao-polo">Áo Polo</a></li>
+                                            <li><a href="/collections/ao-somi">Áo Sơmi</a></li>
+                                            <li><a href="/collections/ao-khoac">Áo Khoác</a></li>
+                                            <li><a href="/collections/ao-ni-va-len">Áo Ni Và Len</a></li>
+                                            <li><a href="/collections/hoodie">Hoodie</a></li>
+                                            <li><a href="/collections/tank-top">Tank Top - Áo Ba Lỗ</a></li>
+                                            <li><a href="/collections/set-do">Set Đồ</a></li>
                                             <li class="cat-feature"><a href="#"><b>BEST SELLER</b></a></li>
                                         </ul>
                                     </div>
@@ -52,70 +54,71 @@
                                     <div class="col">
                                         <h6 class="cat-title">QUẦN</h6>
                                         <ul class="cat-list">
-                                            <li><a href="#">Quần Jean</a></li>
-                                            <li><a href="#">Quần Short</a></li>
-                                            <li><a href="#">Quần Kaki & Chino</a></li>
-                                            <li><a href="#">Quần Jogger - Quần Dài</a></li>
-                                            <li><a href="#">Quần Tây</a></li>
-                                            <li><a href="#">Quần Boxer</a></li>
-                                            <li><a href="#">Set Đồ</a></li>
+                                            <li><a href="/collections/quan-jean">Quần Jean</a></li>
+                                            <li><a href="/collections/quan-short">Quần Short</a></li>
+                                            <li><a href="/collections/quan-kaki">Quần Kaki & Chino</a></li>
+                                            <li><a href="/collections/quan-jogger">Quần Jogger - Quần Dài</a></li>
+                                            <li><a href="/collections/quan-tay">Quần Tây</a></li>
+                                            <li><a href="/collections/quan-boxer">Quần Boxer</a></li>
+                                            <li><a href="/collections/set-do">Set Đồ</a></li>
                                             <li class="cat-feature"><a href="#"><b>OUTLET - ƯU ĐÃI 30% - 70%</b></a>
                                             </li>
-                                        </ul>
-                                    </div>
-                                    <!-- Cột 3: GIÀY & PHỤ KIỆN -->
-                                    <div class="col">
-                                        <h6 class="cat-title">GIÀY & PHỤ KIỆN</h6>
-                                        <ul class="cat-list">
-                                            <li><a href="#">Giày & Dép</a></li>
-                                            <li><a href="#">Balo, Túi & Ví</a></li>
-                                            <li><a href="#">Nón</a></li>
-                                            <li><a href="#">Thắt Lưng</a></li>
-                                            <li><a href="#">Vớ</a></li>
-                                            <li><a href="#">Mắt Kính</a></li>
-                                            <li class="cat-feature"><a href="#"><b>SMART JEANS</b></a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- Thêm cột nếu muốn -->
-                                </div>
-                            </div>
-                        </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link fw-bold" href="/men">Nam</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" href="/women">Nữ</a></li>
                 </ul>
-                <!-- Icon phải -->
-                <div class="navbar-icons d-flex align-items-center ms-3 gap-3">
-                    <% if (user) { %>
-                        <div class="dropdown">
-                            <a class="icon-btn text-dark dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                aria-expanded="false" title="Tài khoản">
-                                <i class="fa-regular fa-user fa-lg"></i>
-                                <%= user.username %>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="/account/dashboard"><i
-                                            class="fa fa-user me-2"></i>Trang cá nhân</a></li>
-                                <li><a class="dropdown-item" href="/logout"><i class="fa fa-sign-out-alt me-2"></i>Đăng
-                                        xuất</a></li>
-                            </ul>
-                        </div>
-                        <% } else { %>
-                            <a href="/login" class="icon-btn text-dark" title="Đăng nhập"><i
-                                    class="fa-regular fa-user fa-lg"></i></a>
-                            <a href="/register" class="icon-btn text-dark" title="Đăng ký"><i
-                                    class="fa-regular fa-address-card fa-lg"></i></a>
-                            <% } %>
-                                <a href="/cart" class="icon-btn position-relative text-dark" title="Giỏ hàng">
-                                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
-                                    <span
-                                        class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        <%= cart && cart.items ? cart.items.reduce((sum, item)=> sum + item.quantity, 0)
-                                            : 0 %>
-                                    </span>
-                                </a>
-                </div>
             </div>
+            <!-- Cột 3: GIÀY & PHỤ KIỆN -->
+            <div class="col">
+                <h6 class="cat-title">GIÀY & PHỤ KIỆN</h6>
+                <ul class="cat-list">
+                    <li><a href="/collections/giay-dep">Giày & Dép</a></li>
+                    <li><a href="/collections/balo-tui-vi">Balo, Túi & Ví</a></li>
+                    <li><a href="/collections/non">Nón</a></li>
+                    <li><a href="/collections/that-lung">Thắt Lưng</a></li>
+                    <li><a href="/collections/vo">Vớ</a></li>
+                    <li><a href="/collections/mat-kinh">Mắt Kính</a></li>
+                    <li class="cat-feature"><a href="#"><b>SMART JEANS</b></a></li>
+                </ul>
+            </div>
+            <!-- Thêm cột nếu muốn -->
+        </div>
+        </div>
+        </div>
+        </li>
+        <li class="nav-item"><a class="nav-link fw-bold" href="/men">Nam</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold" href="/women">Nữ</a></li>
+        </ul>
+        <!-- Icon phải -->
+        <div class="navbar-icons d-flex align-items-center ms-3 gap-3">
+            <% if (user) { %>
+                <div class="dropdown">
+                    <a class="icon-btn text-dark dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                        aria-expanded="false" title="Tài khoản">
+                        <i class="fa-regular fa-user fa-lg"></i>
+                        <%= user.username %>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="/account/dashboard"><i class="fa fa-user me-2"></i>Trang cá
+                                nhân</a></li>
+                        <li><a class="dropdown-item" href="/logout"><i class="fa fa-sign-out-alt me-2"></i>Đăng
+                                xuất</a></li>
+                    </ul>
+                </div>
+                <% } else { %>
+                    <a href="/login" class="icon-btn text-dark" title="Đăng nhập"><i
+                            class="fa-regular fa-user fa-lg"></i></a>
+                    <a href="/register" class="icon-btn text-dark" title="Đăng ký"><i
+                            class="fa-regular fa-address-card fa-lg"></i></a>
+                    <% } %>
+                        <a href="/cart" class="icon-btn position-relative text-dark" title="Giỏ hàng">
+                            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                            <span
+                                class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <%= cart && cart.items ? cart.items.reduce((sum, item)=> sum + item.quantity, 0)
+                                    : 0 %>
+                            </span>
+                        </a>
+        </div>
+        </div>
         </div>
     </nav>
 </body>

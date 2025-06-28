@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema({
     phone: String,
     address: String,
     note: String,
-    paymentMethod: String, // SỬA thành camelCase cho đồng nhất
+    paymentMethod: String,
     total: Number,
     items: [
         {
@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema({
             quantity: Number
         }
     ],
-    status: { type: String, default: 'pending' }, // giá trị chuẩn cho Dashboard
+    status: { type: String, default: 'pending' },
     created_at: { type: Date, default: Date.now }
 });
 

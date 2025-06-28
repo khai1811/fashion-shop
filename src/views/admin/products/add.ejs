@@ -1,7 +1,7 @@
 <%- include('../../partials/admin_header') %>
     <div class="container my-4">
         <h2>Thêm sản phẩm mới</h2>
-        <form action="/admin/products/add" method="POST" class="row g-3" autocomplete="off">
+        <form action="/admin/products/add" method="POST" enctype="multipart/form-data" class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Tên sản phẩm</label>
                 <input type="text" name="name" class="form-control" required>
@@ -11,8 +11,8 @@
                 <input type="number" name="price" class="form-control" required>
             </div>
             <div class="col-md-3">
-                <label class="form-label">Tên file ảnh</label>
-                <input type="text" name="image" class="form-control" placeholder="vd: ao1.webp" required>
+                <label class="form-label">Ảnh</label>
+                <input type="file" name="image" class="form-control" required>
             </div>
             <div class="col-12">
                 <label class="form-label">Mô tả</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label">Danh mục</label>
-                <input type="text" name="category" class="form-control" placeholder="vd: new, Áo Thun..." required>
+                <input type="text" name="category" class="form-control" required>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Trạng thái</label>
@@ -32,8 +32,8 @@
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
-                <a href="/admin/products" class="btn btn-secondary ms-2">Quay lại</a>
             </div>
         </form>
+
     </div>
     <%- include('../../partials/admin_footer') %>

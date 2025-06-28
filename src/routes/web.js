@@ -11,13 +11,14 @@ const dashboardController = require('../controllers/dashboardController');
 const { requireLogin, requireAdmin } = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/uploadMiddleware');
 const accountController = require('../controllers/accountController');
-
+const categoryController = require('../controllers/categoryController');
 // Trang chủ & sản phẩm (public)
 router.get('/', homeController.showHome);
 router.get('/products', productController.showAllProducts);
 router.get('/products/:id', productController.showDetail);
 
-// Auth
+router.get('/collections/:category', categoryController.showCategory); // Đúng
+
 router.get('/register', authController.showRegister);
 router.post('/register', authController.register);
 router.get('/login', authController.showLogin);
@@ -40,9 +41,9 @@ router.post('/admin/orders/:id/update', requireLogin, requireAdmin, adminOrderCo
 // Quản lý sản phẩm (admin)
 router.get('/admin/products', requireLogin, requireAdmin, productController.getAllProducts);
 router.get('/admin/products/add', requireLogin, requireAdmin, productController.getAddForm);
-router.post('/admin/products/add', requireLogin, requireAdmin, upload.single('image'), productController.addProduct);
+router.post('/admin/products/add', requireLogin, requireAdmin, upload.single('images'), productController.addProduct);
 router.get('/admin/products/edit/:id', requireLogin, requireAdmin, productController.getEditForm);
-router.post('/admin/products/edit/:id', requireLogin, requireAdmin, upload.single('image'), productController.updateProduct);
+router.post('/admin/products/edit/:id', requireLogin, requireAdmin, upload.single('images'), productController.updateProduct);
 router.get('/admin/products/delete/:id', requireLogin, requireAdmin, productController.deleteProduct);
 
 // Quản lý đơn hàng (admin)

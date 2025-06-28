@@ -14,11 +14,21 @@ exports.getAddForm = (req, res) => {
 
 // Xử lý thêm
 exports.addProduct = async (req, res) => {
-    const { name, price, description } = req.body;
-    const image = req.file ? '/uploads/' + req.file.filename : '';
-
     try {
-        await Product.create({ name, price, description, image });
+        const { name, price, description, category, status } = req.body;
+        // Multer upload sẽ cho req.file
+        const image = req.file ? req.file.filename : ''; // chỉ lưu tên file
+
+        // Đảm bảo truyền đủ field
+        await Product.create({
+            name,
+            price,
+            description,
+            category,
+            status,
+            image
+        });
+
         res.redirect('/admin/products');
     } catch (err) {
         res.send('Lỗi thêm sản phẩm: ' + err.message);
