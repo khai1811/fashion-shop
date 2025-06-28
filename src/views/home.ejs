@@ -68,13 +68,10 @@
                                                 onclick="openQuickView('<%= product._id %>')">
                                                 <i class="fa-regular fa-eye"></i>
                                             </button>
-
                                             <button class="btn btn-primary btn-circle btn-add-to-cart"
                                                 data-id="<%= product._id %>" title="Thêm vào giỏ hàng">
                                                 <i class="fa-solid fa-cart-plus"></i>
                                             </button>
-
-
                                         </div>
                                     </div>
                                     <div class="card-body px-2 py-2">
@@ -103,7 +100,11 @@
                         </div>
                     </div>
                     <% }) %>
+                        <% let du=featuredProducts.length % 5; for(let i=0; i < (5 - du) % 5; i++) { %>
+                            <div class="col"></div>
+                            <% } %>
             </div>
+
             <div class="text-center mt-3">
                 <a href="#" class="btn btn-outline-dark btn-sm fw-bold px-4">Xem tất cả <i
                         class="fas fa-chevron-right"></i></a>
@@ -139,13 +140,10 @@
                                                 onclick="openQuickView('<%= product._id %>')">
                                                 <i class="fa-regular fa-eye"></i>
                                             </button>
-
-
                                             <button class="btn btn-primary btn-circle btn-add-to-cart"
                                                 data-id="<%= product._id %>" title="Thêm vào giỏ hàng">
                                                 <i class="fa-solid fa-cart-plus"></i>
                                             </button>
-
                                         </div>
                                     </div>
                                     <div class="card-body px-2 py-2">
@@ -174,7 +172,11 @@
                         </div>
                     </div>
                     <% }) %>
+                        <% let du2=featuredShirts.length % 5; for(let i=0; i < (5 - du2) % 5; i++) { %>
+                            <div class="col"></div>
+                            <% } %>
             </div>
+
             <div class="text-center mt-3">
                 <a href="#" class="btn btn-outline-dark btn-sm fw-bold px-4">Xem tất cả <i
                         class="fas fa-chevron-right"></i> </a>

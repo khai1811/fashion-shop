@@ -1,0 +1,29 @@
+<%- include('../partials/admin_header') %>
+
+
+    <div class="container my-5 d-flex flex-column align-items-center justify-content-center" style="min-height: 75vh;">
+        <div class="bg-white p-4 rounded-4 shadow" style="max-width: 400px; width:100%;">
+            <div class="text-center mb-4">
+                <img src="/images/lucky.jpg" alt="Admin Avatar" width="100" height="100" class="rounded-circle shadow"
+                    style="object-fit: cover; border:4px solid #eef1f8;">
+            </div>
+            <h2 class="fw-bold text-center mb-3" style="color:#1753FC;">Thông tin Admin</h2>
+            <div class="mb-2">
+                <i class="fa fa-user me-2 text-primary"></i>
+                <span class="fw-semibold">Tên:</span>
+                <%= admin.name || 'Admin' %>
+            </div>
+            <div class="mb-2">
+                <i class="fa fa-envelope me-2 text-success"></i>
+                <span class="fw-semibold">Email:</span>
+                <%= admin.email %>
+            </div>
+            <div class="mb-4">
+                <i class="fa fa-crown me-2 text-warning"></i>
+                <span class="fw-semibold">Role:</span>
+                <%= admin.role || 'admin' %>
+            </div>
+            <a href="/admin/dashboard" class="btn btn-primary w-100 rounded-pill">Quay về trang quản trị</a>
+        </div>
+    </div>
+    <%- include('../partials/admin_footer') %>

@@ -14,6 +14,8 @@
     padding: 0 32px;
 }
 
+
+
 /* Logo */
 .navbar-brand img.logo {
     height: 36px;
@@ -130,6 +132,7 @@
 }
 
 .icon-btn {
+    text-decoration: none !important;
     background: none;
     border: none;
     padding: 4px 6px;

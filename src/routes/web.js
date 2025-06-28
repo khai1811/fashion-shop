@@ -12,6 +12,13 @@ const { requireLogin, requireAdmin } = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/uploadMiddleware');
 const accountController = require('../controllers/accountController');
 const categoryController = require('../controllers/categoryController');
+const adminController = require('../controllers/adminController');
+
+
+
+
+
+
 // Trang chủ & sản phẩm (public)
 router.get('/', homeController.showHome);
 router.get('/products', productController.showAllProducts);
@@ -45,6 +52,7 @@ router.post('/admin/products/add', requireLogin, requireAdmin, upload.single('im
 router.get('/admin/products/edit/:id', requireLogin, requireAdmin, productController.getEditForm);
 router.post('/admin/products/edit/:id', requireLogin, requireAdmin, upload.single('images'), productController.updateProduct);
 router.get('/admin/products/delete/:id', requireLogin, requireAdmin, productController.deleteProduct);
+router.get('/admin/profile', requireLogin, requireAdmin, adminController.showProfile);
 
 // Quản lý đơn hàng (admin)
 router.get('/admin/orders', requireLogin, requireAdmin, adminOrderController.listOrders);
