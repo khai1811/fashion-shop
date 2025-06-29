@@ -16,8 +16,8 @@ exports.showInfo = (req, res) => {
 exports.showAddresses = async (req, res) => {
     const user = await User.findById(req.session.user._id);
     if (!user) {
-        // Nếu không tìm thấy user, chuyển hướng về login hoặc hiện thông báo lỗi
-        return res.redirect('/login'); // hoặc res.send('User không tồn tại!');
+
+        return res.redirect('/login');
     }
     res.render('account/addresses', { addresses: user.addresses || [] });
 };
@@ -49,7 +49,6 @@ exports.showPoints = (req, res) => {
     res.render('account/points');
 };
 
-// ---- CHỈ GIỮ 3 TRẠNG THÁI CHÍNH + TẤT CẢ ----
 
 // Tất cả đơn hàng
 exports.showAllOrders = async (req, res) => {
@@ -89,5 +88,5 @@ exports.showOrderSuccess = async (req, res) => {
         return res.status(404).send('Không tìm thấy đơn hàng');
     }
 
-    res.render('orderSuccess', { order }); // file EJS để hiển thị trang đặt hàng thành công
+    res.render('orderSuccess', { order });
 };

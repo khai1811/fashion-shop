@@ -4,7 +4,7 @@ const Product = require('../models/Product');
 
 exports.getAllProducts = async (req, res) => {
     const products = await Product.find();
-    res.render('admin/products/list', { products }); // <-- Đúng, trả về đúng file EJS mới!
+    res.render('admin/products/list', { products });
 };
 
 // Hiển thị form thêm
@@ -16,8 +16,7 @@ exports.getAddForm = (req, res) => {
 exports.addProduct = async (req, res) => {
     try {
         const { name, price, description, category, status } = req.body;
-        // Multer upload sẽ cho req.file
-        const image = req.file ? req.file.filename : ''; // chỉ lưu tên file
+        const image = req.file ? req.file.filename : '';
 
         // Đảm bảo truyền đủ field
         await Product.create({
@@ -100,7 +99,7 @@ exports.searchProducts = async (req, res) => {
     const products = await Product.find({
         name: { $regex: q, $options: 'i' }
     });
-    res.render('products/categoryList', {  // tên file .ejs không có phần mở rộng
+    res.render('products/categoryList', {
         categoryTitle: `Kết quả tìm kiếm cho "${q}"`,
         categoryDesc: '',
         categoryBanner: 'search-banner.jpg',

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                         alert('Đã thêm vào giỏ!');
                     } else if (data.redirect) {
-                        window.location.href = data.redirect; // Redirect nếu chưa đăng nhập
+                        window.location.href = data.redirect;
                     } else {
                         alert('Lỗi khi thêm vào giỏ!');
                     }

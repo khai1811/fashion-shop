@@ -31,7 +31,7 @@ exports.updateOrderStatus = async (req, res) => {
 
 // Lấy tất cả đơn hàng cần duyệt
 exports.showAllOrders = async (req, res) => {
-    const orders = await Order.find(); // hoặc filter theo status
+    const orders = await Order.find();
     res.render('admin/orders', { orders });
 };
 

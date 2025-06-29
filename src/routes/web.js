@@ -54,14 +54,7 @@ router.post('/admin/products/edit/:id', requireLogin, requireAdmin, upload.singl
 router.get('/admin/products/delete/:id', requireLogin, requireAdmin, productController.deleteProduct);
 router.get('/admin/profile', requireLogin, requireAdmin, adminController.showProfile);
 
-// Quản lý đơn hàng (admin)
-// router.get('/admin/orders', requireLogin, requireAdmin, adminOrderController.listOrders);
-// router.get('/admin/orders/:id', requireLogin, requireAdmin, adminOrderController.viewOrder);
-// router.get('/admin/orders', adminOrderController.listOrders);
 
-// router.get('/admin/orders', adminController.showAllOrders);
-// router.post('/admin/orders/update-status', adminController.updateOrderStatus);
-// Quản lý đơn hàng (admin)
 router.get('/admin/orders', requireLogin, requireAdmin, adminOrderController.listOrders);
 router.get('/admin/orders/:id', requireLogin, requireAdmin, adminOrderController.viewOrder);
 router.post('/admin/orders/:id/update', requireLogin, requireAdmin, adminOrderController.updateOrderStatus);

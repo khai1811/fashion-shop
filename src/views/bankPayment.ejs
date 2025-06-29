@@ -19,27 +19,7 @@
             <a href="/" class="btn btn-primary mt-3">Về trang chủ</a>
         </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
-                const cartBox = document.querySelector('.cart-box-selector'); // thay selector đúng phần giỏ hàng
-
-                function toggleCartVisibility() {
-                    const selected = [...paymentRadios].find(r => r.checked)?.value;
-                    if (selected === 'VNPAY' || selected === 'BANK') {
-                        cartBox.style.display = 'none';
-                    } else {
-                        cartBox.style.display = 'block';
-                    }
-                }
-
-                paymentRadios.forEach(radio => {
-                    radio.addEventListener('change', toggleCartVisibility);
-                });
-
-                toggleCartVisibility();
-            });
-        </script>
+        <script src="/js/main.js"></script>
 
         <%- include('partials/footer') %>
 </body>

@@ -75,11 +75,15 @@ exports.logout = (req, res) => {
 
 // Hiển thị form Quên mật khẩu
 exports.showForgot = (req, res) => {
-    res.render('auth/forgot-password', { error: null });
+    res.render('auth/forgot-password', { error: null, success: null });
 };
 
-// Xử lý form Quên mật khẩu (demo)
+// Xử lý form Quên mật khẩu 
 exports.forgot = (req, res) => {
     const { email } = req.body;
-    res.send(`Email khôi phục đã gửi đến: ${email}`);
+
+    res.render('auth/forgot-password', {
+        success: `Email khôi phục đã gửi đến: ${email}`,
+        error: null
+    });
 };

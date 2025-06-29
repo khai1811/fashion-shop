@@ -83,7 +83,6 @@
   gap: 10px;
   position: relative;
   cursor: pointer;
-  /* wrap toàn bộ avatar + tên + dropdown */
 }
 
 .admin-avatar img {
@@ -116,7 +115,7 @@
   opacity: 0.65;
 }
 
-/* DROPDOWN CHUẨN KHÔNG MẤT SÓNG */
+
 .admin-user-dropdown-content {
   opacity: 0;
   pointer-events: none;
@@ -135,7 +134,7 @@
   flex-direction: column;
 }
 
-/* hover đúng vào thẻ cha, KHÔNG bị mất khi rê vào menu */
+
 .admin-navbar-user:hover .admin-user-dropdown-content {
   opacity: 1;
   pointer-events: auto;
@@ -225,26 +224,19 @@
 
 
 
-
-
-
-
 .dashboard-container {
   max-width: 1200px;
-  /* tăng từ 900 lên 1200 */
   margin: 48px auto 32px;
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 12px 40px rgba(60, 60, 120, 0.14);
   padding: 56px 44px;
-  /* padding lớn hơn */
 }
 
 .dashboard-title {
   text-align: center;
   margin-bottom: 60px;
   font-size: 2.7rem;
-  /* to hơn */
   font-weight: 800;
   letter-spacing: 1.3px;
   color: #2563eb;
@@ -253,7 +245,6 @@
 .stats-row {
   display: flex;
   gap: 40px;
-  /* gap lớn */
   justify-content: center;
   margin-bottom: 58px;
   flex-wrap: wrap;
@@ -264,9 +255,7 @@
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(59, 130, 246, 0.10);
   padding: 44px 78px;
-  /* to lên */
   flex: 1 1 340px;
-  /* to và tối thiểu rộng */
   min-width: 340px;
   text-align: center;
   transition: transform 0.18s;
@@ -287,7 +276,6 @@
 
 .stat-value {
   font-size: 3.2rem;
-  /* số to lên */
   font-weight: 900;
   color: #1e40af;
 }
@@ -296,7 +284,6 @@
   display: flex;
   justify-content: center;
   gap: 60px;
-  /* nút xa nhau */
   margin-top: 36px;
   flex-wrap: wrap;
 }
@@ -355,12 +342,6 @@
 }
 
 
-
-
-
-
-
-/* === ADMIN TABLE SẢN PHẨM (LIST, ETC) === */
 .container.my-4 {
   max-width: 1200px;
   background: #fff;
@@ -379,7 +360,6 @@
   margin-bottom: 36px !important;
 }
 
-/* === NÚT "Thêm sản phẩm mới" === */
 .btn-primary.mb-3 {
   background: #2563eb;
   border: none;
@@ -468,7 +448,7 @@
   background: #b91c1c;
 }
 
-/* === FORM THÊM/SỬA SẢN PHẨM === */
+
 .form-label {
   font-weight: 700;
   color: #2d2d2d;
@@ -531,7 +511,7 @@ textarea.form-control {
   transform: translateY(-2px) scale(1.03);
 }
 
-/* Responsive: mobile */
+
 @media (max-width: 900px) {
   .container.my-4 {
     padding: 18px 3vw;

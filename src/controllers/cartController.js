@@ -30,7 +30,7 @@ exports.addToCart = async (req, res) => {
             existingItem.quantity += 1;
         } else {
             cart.items.push({
-                product_id: product._id, // dùng product_id để lưu chuẩn với Order schema
+                product_id: product._id,
                 name: product.name,
                 price: product.price,
                 image: product.image,

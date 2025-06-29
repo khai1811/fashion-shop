@@ -1,23 +1,23 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const User = require('./src/models/User'); // Đường dẫn tùy theo dự án của bạn
+const User = require('./src/models/User');
 
 async function createAdmin() {
     try {
-        // Kết nối database
-        await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/fashion_shop'); // Thay yourdbname bằng tên db bạn đang dùng
+
+        await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/fashion_shop');
 
         // Tạo mật khẩu hash
-        const hashedPassword = await bcrypt.hash('Admin1234', 10); // Mật khẩu admin mới (thay đổi nếu muốn)
+        const hashedPassword = await bcrypt.hash('Admin1234', 10);
 
         // Tạo user admin
         const adminUser = new User({
-            username: 'admin',       // Tên đăng nhập admin
-            email: 'admin@example.com', // Email admin
-            phone: '0123456789',     // Số điện thoại admin
+            username: 'admin',
+            email: 'admin@example.com',
+            phone: '0123456789',
             password: hashedPassword,
-            role: 'admin'            // Role admin để phân quyền
+            role: 'admin'
         });
 
         await adminUser.save();

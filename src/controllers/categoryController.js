@@ -1,8 +1,7 @@
 const Product = require('../models/Product');
 
-// Danh mục mapping (key: slug url, value: { tên, mô tả, banner })
 const categoryConfig = {
-    'ao-thun': { title: 'Áo Thun', desc: 'T-Shirts', banner: 'banner-tshirt.jpg', query: 'Áo thun' },
+    'ao-thun': { title: 'Áo thun', desc: 'T-Shirts', banner: 'banner-tshirt.jpg', query: 'Áo thun' },
     'ao-polo': { title: 'Áo Polo', desc: 'Polo Shirts', banner: 'banner-polo.jpg', query: 'Áo Polo' },
     'ao-somi': { title: 'Áo Sơmi', desc: 'Shirts', banner: 'banner-shirt.jpg', query: 'Áo Sơmi' },
     'ao-khoac': { title: 'Áo Khoác', desc: 'Jackets', banner: 'banner-jacket.jpg', query: 'Áo Khoác' },
@@ -22,7 +21,8 @@ const categoryConfig = {
     'that-lung': { title: 'Thắt Lưng', desc: 'Belts', banner: 'banner-belt.jpg', query: 'Thắt Lưng' },
     'vo': { title: 'Vớ', desc: 'Socks', banner: 'banner-sock.jpg', query: 'Vớ' },
     'mat-kinh': { title: 'Mắt Kính', desc: 'Glasses', banner: 'banner-glasses.jpg', query: 'Mắt Kính' },
-    // ... thêm tùy ý
+    'women': { title: 'Thời Trang Nữ', desc: 'Women Fashion', banner: 'banner-women.jpg', query: 'Nữ' },
+    'men': { title: 'Thời Trang Nam', desc: 'Men Fashion', banner: 'banner-men.jpg', query: 'Nam' },
 };
 
 const showCategory = async (req, res) => {

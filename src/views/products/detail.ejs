@@ -7,7 +7,6 @@
         <%= product.name %> | Fashion Store
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap & FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -22,12 +21,10 @@
                 <div class="col-lg-11">
                     <div class="product-detail-box">
                         <div class="row align-items-start">
-                            <!-- Ảnh sản phẩm -->
                             <div class="col-md-5 mb-3 mb-md-0">
                                 <img src="/images/<%= product.image %>" alt="<%= product.name %>"
                                     class="product-img w-100">
                             </div>
-                            <!-- Thông tin sản phẩm -->
                             <div class="col-md-7">
                                 <h2 class="fw-bold mb-3">
                                     <%= product.name %>
@@ -46,7 +43,7 @@
                                     <b>Mô tả:</b>
                                     <%= product.description || 'Chưa có mô tả.' %>
                                 </div>
-                                <!-- Thêm vào giỏ hàng -->
+
                                 <form action="/cart/add/<%= product._id %>" method="get" class="mb-3"
                                     autocomplete="off">
                                     <div class="input-group mb-3" style="width: 170px;">
@@ -74,8 +71,8 @@
                                     <a href="/" class="btn btn-outline-secondary">Về trang chủ</a>
                                 </div>
                             </div>
-                        </div> <!-- row -->
-                    </div> <!-- product-detail-box -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
