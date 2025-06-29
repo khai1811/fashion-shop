@@ -6,20 +6,9 @@ exports.submitOrder = async (req, res) => {
         const user_id = req.session.user?._id;
         const { name, phone, address, note, paymentMethod } = req.body;
         const cart = req.session.cart || { items: [] };
-
-        if (!cart.items || cart.items.length === 0)
-            return res.send('Giỏ hàng rỗng!');
+        if (!cart.items || cart.items.length === 0) return res.send('Giỏ hàng rỗng!');
 
         const total = cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-        // Đảm bảo từng item có product_id (ObjectId tham chiếu Product)
-        const items = cart.items.map(item => ({
-            product_id: item.product_id,         // CHÍNH LÀ id của Product
-            name: item.name,
-            price: item.price,
-            image: item.image,
-            quantity: item.quantity
-        }));
 
         const newOrder = new Order({
             user_id,
@@ -29,16 +18,21 @@ exports.submitOrder = async (req, res) => {
             note,
             paymentMethod,
             total,
-            items,
+            items: cart.items,
             status: 'pending',
-            createdAt: new Date()
+            createdAt: new Date(),
         });
 
         await newOrder.save();
 
-        req.session.cart = { items: [] }; // Reset lại giỏ hàng
-        res.render('checkout/success', { order: newOrder });
+        if (paymentMethod === 'BANK') {
+            return res.redirect(`/payment/bank/${newOrder._id}`);
+        }
 
+
+        // Nếu không phải MoMo (ví dụ COD), thì xóa giỏ hàng và hiển thị trang thành công
+        req.session.cart = { items: [] };
+        res.render('checkout/success', { order: newOrder });
     } catch (err) {
         res.send('Lỗi khi đặt hàng: ' + err.message);
     }

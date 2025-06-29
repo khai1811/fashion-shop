@@ -6,75 +6,77 @@
     <title>Đặt hàng thành công</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/account.css" />
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body>
     <%- include('../partials/header') %>
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-9">
-                <div class="card shadow text-center border-0">
-                    <div class="card-body p-5">
-                        <div class="mb-4">
-                            <i class="fa-solid fa-circle-check fa-4x text-success mb-2"></i>
-                        </div>
-                        <h2 class="fw-bold mb-3 text-success">Đặt hàng thành công!</h2>
-                        <p class="mb-4 fs-5">
-                            Cảm ơn bạn
-                            <span class="fw-semibold text-primary"><%= order.name %></span> đã tin tưởng và đặt mua sản phẩm tại shop.
-                        </p>
-
-                        <div class="mb-3 text-start">
-                            <div class="mb-2">
-                                <i class="fa-solid fa-location-dot text-danger me-2"></i>
-                                <strong>Địa chỉ nhận hàng:</strong>
-                                <span class="ms-2"><%= order.address %></span>
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-9">
+                    <div class="card shadow text-center border-0">
+                        <div class="card-body p-5">
+                            <div class="mb-4">
+                                <i class="fa-solid fa-circle-check fa-4x text-success mb-2"></i>
                             </div>
-                            <div class="mb-2">
-                                <i class="fa-solid fa-phone-volume text-success me-2"></i>
-                                <strong>Số điện thoại:</strong>
-                                <span class="ms-2"><%= order.phone %></span>
-                            </div>
-                            <div class="mb-2">
-                                <i class="fa-solid fa-credit-card text-info me-2"></i>
-                                <strong>Hình thức thanh toán:</strong>
-                                <span class="ms-2">
-                                    <% if (order.paymentMethod === 'COD') { %>
-                                        Thanh toán khi nhận hàng (COD)
-                                    <% } else if (order.paymentMethod === 'VNPAY') { %>
-                                        Ví điện tử VNPAY
-                                    <% } else if (order.paymentMethod === 'MOMO') { %>
-                                        Ví MoMo
-                                    <% } else { %>
-                                        <%= order.paymentMethod %>
-                                    <% } %>
+                            <h2 class="fw-bold mb-3 text-success">Đặt hàng thành công!</h2>
+                            <p class="mb-4 fs-5">
+                                Cảm ơn bạn
+                                <span class="fw-semibold text-primary">
+                                    <%= order.name %>
                                 </span>
-                            </div>
-                            <% if (order.note) { %>
+                                đã tin tưởng và đặt mua sản phẩm tại shop.
+                            </p>
+                            <div class="mb-3 text-start">
                                 <div class="mb-2">
-                                    <i class="fa-solid fa-note-sticky text-warning me-2"></i>
-                                    <strong>Ghi chú:</strong>
-                                    <span class="ms-2"><%= order.note %></span>
+                                    <i class="fa-solid fa-location-dot text-danger me-2"></i>
+                                    <strong>Địa chỉ nhận hàng:</strong>
+                                    <span class="ms-2">
+                                        <%= order.address %>
+                                    </span>
                                 </div>
-                            <% } %>
+                                <div class="mb-2">
+                                    <i class="fa-solid fa-phone-volume text-success me-2"></i>
+                                    <strong>Số điện thoại:</strong>
+                                    <span class="ms-2">
+                                        <%= order.phone %>
+                                    </span>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="fa-solid fa-credit-card text-info me-2"></i>
+                                    <strong>Hình thức thanh toán:</strong>
+                                    <span class="ms-2">
+                                        <% if (order.paymentMethod==='COD' ) { %>
+                                            Thanh toán khi nhận hàng (COD)
+                                            <% } else if (order.paymentMethod==='VNPAY' ) { %>
+                                                Ví điện tử VNPAY
+                                                <% } else if (order.paymentMethod==='BANK' ) { %>
+                                                    Thanh toán qua Ngân hàng
+                                                    <% } else { %>
+                                                        <%= order.paymentMethod %>
+                                                            <% } %>
+                                    </span>
+                                </div>
+                                <% if (order.note) { %>
+                                    <div class="mb-2">
+                                        <i class="fa-solid fa-note-sticky text-warning me-2"></i>
+                                        <strong>Ghi chú:</strong>
+                                        <span class="ms-2">
+                                            <%= order.note %>
+                                        </span>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <p class="text-muted">Chúng tôi sẽ liên hệ xác nhận đơn hàng và giao sớm nhất!</p>
+                            <a href="/" class="btn btn-primary btn-lg mt-4 px-5">
+                                <i class="fa fa-arrow-left me-2"></i>Về trang chủ
+                            </a>
                         </div>
-
-                        <p class="text-muted">
-                            Chúng tôi sẽ liên hệ xác nhận đơn hàng và giao sớm nhất!
-                        </p>
-                        <a href="/" class="btn btn-primary btn-lg mt-4 px-5">
-                            <i class="fa fa-arrow-left me-2"></i>Về trang chủ
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <%- include('../partials/footer') %>
+        <%- include('../partials/footer') %>
 </body>
 
 </html>

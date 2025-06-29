@@ -79,3 +79,15 @@ exports.showDeliveredOrders = async (req, res) => {
 exports.showRecentlyViewed = (req, res) => {
     res.render('account/recent');
 };
+exports.showOrderSuccess = async (req, res) => {
+    const orderId = req.params.orderId;
+
+    // Tìm đơn hàng theo ID
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+        return res.status(404).send('Không tìm thấy đơn hàng');
+    }
+
+    res.render('orderSuccess', { order }); // file EJS để hiển thị trang đặt hàng thành công
+};

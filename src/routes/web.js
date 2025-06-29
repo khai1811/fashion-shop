@@ -13,6 +13,7 @@ const upload = require('../middlewares/uploadMiddleware');
 const accountController = require('../controllers/accountController');
 const categoryController = require('../controllers/categoryController');
 const adminController = require('../controllers/adminController');
+const bankController = require('../controllers/bankController');
 
 
 
@@ -29,6 +30,7 @@ router.post('/register', authController.register);
 router.get('/login', authController.showLogin);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
+
 
 // Giỏ hàng & đặt hàng
 router.get('/cart', cartController.viewCart);
@@ -95,5 +97,6 @@ router.get('/account/recent', requireLogin, accountController.showRecentlyViewed
 
 // API (dạng JSON)
 router.get('/api/products/:id', productController.apiGetProduct);
-
+router.get('/payment/bank/:orderId', bankController.bankPayment);
+router.get('/account/orders/success/:orderId', requireLogin, accountController.showOrderSuccess);
 module.exports = router;
