@@ -1,11 +1,9 @@
 const Product = require('../models/Product');
 
 exports.viewCart = (req, res) => {
-    // Luôn đảm bảo cart luôn có đủ fields
     if (!req.session.cart) {
         req.session.cart = { items: [], totalPrice: 0 };
     }
-    // Nếu chưa tính totalPrice thì tính lại
     if (typeof req.session.cart.totalPrice !== 'number') {
         req.session.cart.totalPrice = req.session.cart.items.reduce(
             (sum, item) => sum + (item.price * item.quantity), 0
@@ -14,57 +12,53 @@ exports.viewCart = (req, res) => {
     res.render('cart/index', { cart: req.session.cart });
 };
 
-
-// Thêm sản phẩm vào giỏ hàng (AJAX)
 exports.addToCart = async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const product = await Product.findById(productId);
+        if (!product) return res.json({ success: false, message: 'Sản phẩm không tồn tại' });
+
+        if (!req.session.cart) {
+            req.session.cart = { items: [], totalPrice: 0 };
+        }
+        const cart = req.session.cart;
+
+        // Tìm item theo product_id
+        const existingItem = cart.items.find(p => p.product_id && p.product_id.toString() === productId);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.items.push({
+                product_id: product._id, // dùng product_id để lưu chuẩn với Order schema
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                quantity: 1
+            });
+        }
+
+        cart.totalPrice = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+        const count = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+
+        return res.json({ success: true, count });
+    } catch (err) {
+        console.error(err);
+        return res.json({ success: false, message: err.message });
+    }
+};
+
+exports.removeFromCart = (req, res) => {
     const productId = req.params.id;
-    const product = await Product.findById(productId);
-
-    if (!product) return res.json({ success: false });
-
     if (!req.session.cart) {
         req.session.cart = { items: [], totalPrice: 0 };
     }
-
-    const cart = req.session.cart;
-    const existingItem = cart.items.find(p => p._id == productId);
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.items.push({
-            _id: product._id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            quantity: 1
-        });
-    }
-    cart.totalPrice = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
-
-    // Đếm tổng số sản phẩm
-    const count = cart.items.reduce((sum, item) => sum + item.quantity, 0);
-
-    // Trả về JSON để JS cập nhật badge
-    res.json({ success: true, count: count });
-};
-
-
-// Xóa sản phẩm khỏi giỏ hàng
-exports.removeFromCart = (req, res) => {
-    const productId = req.params.id;
-
-    if (!req.session.cart) {
-        req.session.cart = {
-            items: [],
-            totalPrice: 0
-        };
-    }
-
     const cart = req.session.cart;
 
-    cart.items = cart.items.filter(item => item._id != productId);
+    // Lọc bỏ sản phẩm theo product_id
+    cart.items = cart.items.filter(item => item.product_id && item.product_id.toString() !== productId);
 
-    // Cập nhật lại tổng tiền
     cart.totalPrice = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
 
     res.redirect('/cart');

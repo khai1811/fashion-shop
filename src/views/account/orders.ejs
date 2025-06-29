@@ -21,19 +21,40 @@
                 <div class="col-lg-9">
                     <div class="account-card">
                         <h3 class="mb-3">Tất cả các đơn hàng</h3>
-                        <% if (orders.length===0) { %>
+                        <% if (!orders || orders.length===0) { %>
                             <div>Bạn chưa có đơn hàng nào.</div>
                             <% } else { %>
-                                <ul>
-                                    <% orders.forEach(order=> { %>
-                                        <li>
-                                            Mã: <%= order._id %> -
-                                                Ngày: <%= order.created_at ? new
-                                                    Date(order.created_at).toLocaleDateString('vi-VN') : '---' %> -
-                                                    Trạng thái: <%= order.status %>
-                                        </li>
-                                        <% }) %>
-                                </ul>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% orders.forEach(order=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%= order._id %>
+                                                </td>
+                                                <td>
+                                                    <%= order.createdAt ? new
+                                                        Date(order.createdAt).toLocaleDateString('vi-VN') :
+                                                        (order.created_at ? new
+                                                        Date(order.created_at).toLocaleDateString('vi-VN') : '---' ) %>
+                                                </td>
+                                                <td>
+                                                    <%= order.total ? order.total.toLocaleString('vi-VN') : '---' %>₫
+                                                </td>
+                                                <td>
+                                                    <%= order.status %>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
                                 <% } %>
                     </div>
                 </div>

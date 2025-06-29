@@ -17,8 +17,6 @@ const adminController = require('../controllers/adminController');
 
 
 
-
-
 // Trang chủ & sản phẩm (public)
 router.get('/', homeController.showHome);
 router.get('/products', productController.showAllProducts);
@@ -55,9 +53,18 @@ router.get('/admin/products/delete/:id', requireLogin, requireAdmin, productCont
 router.get('/admin/profile', requireLogin, requireAdmin, adminController.showProfile);
 
 // Quản lý đơn hàng (admin)
+// router.get('/admin/orders', requireLogin, requireAdmin, adminOrderController.listOrders);
+// router.get('/admin/orders/:id', requireLogin, requireAdmin, adminOrderController.viewOrder);
+// router.get('/admin/orders', adminOrderController.listOrders);
+
+// router.get('/admin/orders', adminController.showAllOrders);
+// router.post('/admin/orders/update-status', adminController.updateOrderStatus);
+// Quản lý đơn hàng (admin)
 router.get('/admin/orders', requireLogin, requireAdmin, adminOrderController.listOrders);
 router.get('/admin/orders/:id', requireLogin, requireAdmin, adminOrderController.viewOrder);
-router.get('/admin/orders', adminOrderController.listOrders);
+router.post('/admin/orders/:id/update', requireLogin, requireAdmin, adminOrderController.updateOrderStatus);
+
+
 // Quên mật khẩu
 router.get('/forgot-password', authController.showForgot);
 router.post('/forgot-password', authController.forgot);
@@ -65,6 +72,13 @@ router.post('/forgot-password', authController.forgot);
 // Tài khoản của tôi (user)
 router.get('/account/dashboard', requireLogin, accountController.dashboard);
 router.get('/account/info', requireLogin, accountController.showInfo);
+
+router.get('/search', productController.searchProducts);
+
+
+router.post('/account/addresses/add', accountController.addAddress);
+router.post('/account/addresses/delete/:address', accountController.deleteAddress);
+
 router.get('/account/addresses', requireLogin, accountController.showAddresses);
 router.get('/account/measurements', requireLogin, accountController.showMeasurements);
 router.get('/account/vouchers', requireLogin, accountController.showVouchers);
@@ -73,13 +87,9 @@ router.get('/account/points', requireLogin, accountController.showPoints);
 // Đơn hàng của tôi (user)
 router.get('/account/orders', requireLogin, accountController.showAllOrders);
 router.get('/account/orders/pending', requireLogin, accountController.showPendingOrders);
-router.get('/account/orders/ready', requireLogin, accountController.showReadyOrders);
 router.get('/account/orders/shipping', requireLogin, accountController.showShippingOrders);
 router.get('/account/orders/delivered', requireLogin, accountController.showDeliveredOrders);
-router.get('/account/orders/review', requireLogin, accountController.showReviewOrders);
-router.get('/account/orders/reviewed', requireLogin, accountController.showReviewedOrders);
-router.get('/account/orders/canceled', requireLogin, accountController.showCanceledOrders);
-router.get('/account/orders/returned', requireLogin, accountController.showReturnedOrders);
+router.get('/account/recent', requireLogin, accountController.showRecentlyViewed);
 
 router.get('/account/recent', requireLogin, accountController.showRecentlyViewed);
 

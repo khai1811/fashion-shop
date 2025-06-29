@@ -21,7 +21,11 @@
                 </span>
             </div>
             <div class="cat-summary-right">
-                <input type="text" class="cat-search" placeholder="Tìm kiếm sản phẩm...">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Tìm sản phẩm...">
+                    <button type="submit">Tìm</button>
+                </form>
+
             </div>
         </div>
 

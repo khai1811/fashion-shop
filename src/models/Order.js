@@ -1,4 +1,3 @@
-// models/Order.js
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
@@ -11,15 +10,16 @@ const orderSchema = new mongoose.Schema({
     total: Number,
     items: [
         {
-            _id: mongoose.Schema.Types.ObjectId,
-            name: String,
-            price: Number,
+            product_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+            name: String,         // Lưu lại tên SP lúc đặt (tránh bị đổi tên)
+            price: Number,        // Lưu lại giá lúc đặt (tránh thay đổi về sau)
             image: String,
             quantity: Number
         }
     ],
-    status: { type: String, default: 'pending' },
-    created_at: { type: Date, default: Date.now }
+    status: { type: String, default: 'pending' }, // pending, approved, shipping, delivered, cancelled
+    createdAt: { type: Date, default: Date.now },
+    paymentMethod: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Order', orderSchema);

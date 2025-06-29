@@ -15,25 +15,40 @@
             <div class="row">
                 <div class="col-lg-3 mb-4">
                     <div class="side-menu">
-                        <%- include('_sidebar', { active: 'processing' }) %>
+                        <%- include('_sidebar', { active: 'orders_processing' }) %>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="account-card">
-                        <h3 class="mb-3">Đơn hàng xử lý</h3>
-                        <% if (orders.length===0) { %>
-                            <div>Bạn chưa có đơn xử lý nào.</div>
+                        <h3 class="mb-3">Đơn hàng đang xử lý</h3>
+                        <% if (!orders || orders.length===0) { %>
+                            <div>Bạn chưa có đơn hàng xử lý nào.</div>
                             <% } else { %>
-                                <ul>
-                                    <% orders.forEach(order=> { %>
-                                        <li>
-                                            Mã: <%= order._id %> -
-                                                Ngày: <%= order.created_at ? new
-                                                    Date(order.created_at).toLocaleDateString('vi-VN') : '---' %> -
-                                                    Trạng thái: <%= order.status %>
-                                        </li>
-                                        <% }) %>
-                                </ul>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn hàng</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% orders.forEach(order=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%= order._id %>
+                                                </td>
+                                                <td>
+                                                    <%= order.createdAt ? new
+                                                        Date(order.createdAt).toLocaleDateString('vi-VN') : '---' %>
+                                                </td>
+                                                <td>
+                                                    <%= order.status %>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
                                 <% } %>
                     </div>
                 </div>

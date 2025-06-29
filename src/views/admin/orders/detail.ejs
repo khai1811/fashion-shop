@@ -52,7 +52,6 @@
             <form action="/admin/orders/<%= order._id %>/update" method="POST" class="mb-3">
                 <select name="status" class="form-select" required>
                     <option value="pending" <%=order.status==='pending' ? 'selected' : '' %>>Chờ duyệt</option>
-                    <option value="approved" <%=order.status==='approved' ? 'selected' : '' %>>Đã duyệt</option>
                     <option value="shipping" <%=order.status==='shipping' ? 'selected' : '' %>>Đang giao</option>
                     <option value="delivered" <%=order.status==='delivered' ? 'selected' : '' %>>Đã giao</option>
                     <option value="cancelled" <%=order.status==='cancelled' ? 'selected' : '' %>>Đã hủy</option>
@@ -60,6 +59,7 @@
                 <button type="submit" class="btn btn-primary mt-2">Cập nhật trạng thái</button>
                 <a href="/admin/orders" class="btn btn-secondary mt-2">Quay lại</a>
             </form>
+
         </div>
 
         <%- include('../../partials/admin_footer') %>

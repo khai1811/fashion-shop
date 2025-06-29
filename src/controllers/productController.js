@@ -94,3 +94,16 @@ exports.apiGetProduct = async (req, res) => {
         res.status(500).json({ error: 'Lỗi server' });
     }
 };
+
+exports.searchProducts = async (req, res) => {
+    const q = req.query.q || '';
+    const products = await Product.find({
+        name: { $regex: q, $options: 'i' }
+    });
+    res.render('products/categoryList', {  // tên file .ejs không có phần mở rộng
+        categoryTitle: `Kết quả tìm kiếm cho "${q}"`,
+        categoryDesc: '',
+        categoryBanner: 'search-banner.jpg',
+        products
+    });
+};
