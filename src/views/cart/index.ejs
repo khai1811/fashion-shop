@@ -83,18 +83,19 @@
                                             </div>
                                             <div class="d-flex align-items-center gap-1 ms-2">
 
-                                                <a href="/products/<%= item._id %>" class="btn btn-sm btn-light"
+                                                <a href="/products/<%= item.product_id %>" class="btn btn-sm btn-light"
                                                     title="Xem sản phẩm">
                                                     <i class="fa-regular fa-eye"></i>
                                                 </a>
 
-                                                <form method="GET" action="/cart/remove/<%= item._id %>"
+                                                <form method="GET" action="/cart/remove/<%= item.product_id %>"
                                                     style="display:inline;">
                                                     <button type="submit" class="btn btn-sm btn-outline-danger"
                                                         title="Xóa sản phẩm">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
+
                                             </div>
                                         </div>
                                         <% }) %>

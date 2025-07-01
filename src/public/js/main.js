@@ -67,6 +67,9 @@ function openQuickView(productId) {
             alert('Không thể hiển thị sản phẩm!');
         });
 }
+document.getElementById('quickViewGoCart').addEventListener('click', function () {
+    window.location.href = '/cart';
+});
 
 
 // ===== Thêm sản phẩm vào giỏ hàng từ modal xem nhanh =====
@@ -94,3 +97,24 @@ function addToCart(productId, quantity = 1) {
             alert('Lỗi khi thêm vào giỏ hàng!');
         });
 }
+
+// ===== pay =====
+document.addEventListener('DOMContentLoaded', () => {
+    const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+    const cartBox = document.querySelector('.cart-box-selector');
+
+    function toggleCartVisibility() {
+        const selected = [...paymentRadios].find(r => r.checked)?.value;
+        if (selected === 'VNPAY' || selected === 'BANK') {
+            cartBox.style.display = 'none';
+        } else {
+            cartBox.style.display = 'block';
+        }
+    }
+
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', toggleCartVisibility);
+    });
+
+    toggleCartVisibility();
+});

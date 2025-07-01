@@ -56,10 +56,10 @@ exports.removeFromCart = (req, res) => {
     }
     const cart = req.session.cart;
 
-    // Lọc bỏ sản phẩm theo product_id
     cart.items = cart.items.filter(item => item.product_id && item.product_id.toString() !== productId);
 
     cart.totalPrice = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
 
-    res.redirect('/cart');
+    res.render('cart/index', { cart: req.session.cart });
+
 };
